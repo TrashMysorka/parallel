@@ -3,14 +3,19 @@
 using namespace std;
 int main() {
     long long int n = 10000000;
-    float *array = (float*)malloc(n*sizeof(float));
+    double sum = 0;
+    double *array = (double*)malloc(n*sizeof(double));
+#pragma acc kernel
     for(int i = 0; i < n; i++){
-        array[i] = sin(i);
+        array[i] = sin((double)i);
     }
-    float sum = 0;
+
+#pragma acc kernel
     for (int i = 0; i < n; i++){
         sum += i;
     }
+
+
     cout << sum;
     return 0;
 }
