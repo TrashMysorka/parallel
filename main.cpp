@@ -1,20 +1,19 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
+double array[10000000];
 int main() {
-    long long int n = 10000000;
-    double sum = 0;
-    double *array = (double*)malloc(n*sizeof(double));
+
+    float sum = 0;
+
 #pragma acc kernels
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < 10000000; i++){
         array[i] = sin((double)i);
     }
 #pragma acc kernels
-    for (int i = 0; i < n; i++){
+    for (auto i : array){
         sum += i;
     }
-
-
     cout << sum;
     return 0;
 }
