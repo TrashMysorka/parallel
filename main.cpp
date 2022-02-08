@@ -2,13 +2,13 @@
 #include <cmath>
 using namespace std;
 int main() {
-    int n = 10000000;
-    float array[n];
+    long long int n = 10000000;
+    float *array = (float*)malloc(n*sizeof(float));
     for(int i = 0; i < n; i++){
         array[i] = sin(i);
     }
     float sum = 0;
-    for (auto i : array){
+    for (int i = 0; i < n; i++){
         sum += i;
     }
     cout << sum;
